@@ -1,12 +1,12 @@
 <div class="container">
   <button style="background-color: green;color: white;width: 8rem;height: 2rem;font-size: 15px" (click)="onShowTemplate()" *ngIf="!showTemplate">
-    <i class="fas fa-plus"></i> Template</button>
+    Template</button>
   <div *ngIf="showTemplate">
     <div class="header" style="border: 1px solid rgb(73, 69, 69)">
       Canvas Application
     </div>
     <div class="content" style="border: 1px solid rgb(73, 69, 69)">
-      <div style="width: 200px; height: 600px; padding: 5px;border: 1px solid rgb(73, 69, 69)">
+      <div style="width: 200px; height: 500px; padding: 5px;border: 1px solid rgb(73, 69, 69)">
         <button (click)="fileInput.click()" class="custom-file-upload">
           Browse Image
         </button>
@@ -22,7 +22,7 @@
         </div>
       </div>
       <div>
-        <canvas #canvas width="800" height="600"></canvas>
+        <canvas #canvas width="900" height="500px"></canvas>
       </div>
     </div>
   </div>
