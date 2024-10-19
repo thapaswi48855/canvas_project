@@ -1,0 +1,117 @@
+
+  
+  ul {
+    list-style-type: none;
+  }
+  
+  .error {
+    color: red;
+  }
+  
+  button {
+    margin-left: 10px;
+  }
+  
+  /* Forecast list styling */
+  .forecast-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Individual forecast item */
+  .forecast-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Forecast date (Day and Weekday) */
+  .forecast-date {
+    margin-right: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Weather icon styling */
+  .weather-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+  }
+  
+  /* Forecast details (temperature, wind, etc.) */
+  .forecast-details div {
+    margin-bottom: 5px;
+  }
+
+  /* Right panel styling */
+.right-panel {
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  /* Forecast list container for side-by-side display */
+  .forecast-list {
+    display: flex; 
+    gap: 20px; 
+    overflow-x: auto; 
+    padding: 10px;
+    padding-bottom: 120px;
+  }
+  
+  /* Individual forecast item */
+  .forecast-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    min-width: 120px; 
+    text-align: center;
+  }
+  
+  /* Date and day styling */
+  .forecast-date {
+    font-weight: bold;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    gap: 5px; 
+    font-family: Arial, sans-serif; 
+  }
+  
+  /* Weather icon styling */
+  .weather-icon {
+    width: 50px;
+    height: 50px;
+    margin: 5px 0;
+  }
+  
+  /* Temperature styling */
+  .forecast-item div {
+    margin-top: 5px;
+  }
+  
+  
+  .clear-button {
+    margin-top: auto; 
+    padding: 10px 15px;
+    background-color: #007bff; 
+    color: white;
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    width: 100%; 
+  }
+  
+  .clear-button:hover {
+    background-color: #0056b3; 
+  }
+  
+  

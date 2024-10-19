@@ -1,0 +1,122 @@
+<div
+  style="
+    display: inline-block;
+    vertical-align: top;
+    padding: 10px;
+    width: 30%;
+    border: 1px solid #111111;
+    min-height: 100vh;
+    margin-right: 10px;
+    /* display: flex; */
+    position: relative;
+  "
+>
+  <input style="width: 80%;" [(ngModel)]="cityName" placeholder="Enter city name" />
+  <button (click)="addCity()">+</button>
+
+  <div *ngIf="error" class="error">
+    {{ errorMessage }}
+  </div>
+
+  <h6>Recent Locations</h6>
+  <ul>
+    <li
+      *ngFor="let city of recentLocations; let i = index"
+      style="display: flex; justify-content: space-between;margin-bottom: 5px;"
+    >
+      <span
+        (click)="showForecast(city)"
+        style="font-size: 13px; margin-left: -34px"
+      >
+        {{ city.name }} - {{ city.temp }} °C, {{ city.weatherDescription }}
+      </span>
+      <span>
+        <button (click)="refreshCity(city)" style="padding: 0px">
+          <!-- <a href="" (click)="refreshCity(city)"> -->
+          <i class="bi bi-arrow-clockwise"></i>
+          <!-- </a> -->
+        </button>
+        <button style="padding: 0px" (click)="removeCity(i)">X</button>
+      </span>
+    </li>
+  </ul>
+  <button
+    class="clear-button"
+    style="
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 20%;
+    "
+    (click)="clearLocations()"
+  >
+    Clear
+  </button>
+</div>
+
+<div
+  style="
+    display: inline-block;
+    vertical-align: top;
+    padding: 20px;
+    border: 1px solid #141111;
+    min-height: 100vh;
+    /* border-radius: 8px; */
+    width: 68%;
+  "
+  *ngIf="selectedCityForecast"
+>
+  <div style="display: flex; justify-content: space-between">
+    <div>
+      <h6>{{ selectedCityForecast.city.name }}</h6>
+    </div>
+    <div>
+      <button (click)="refreshCity(selectedCityForecast.city)" style="padding: 0px">
+        <!-- <a href="" (click)="refreshCity(city)"> -->
+        <i class="bi bi-arrow-clockwise"></i>
+        <!-- </a> -->
+      </button>
+    </div>
+  </div>
+
+  <!-- Date and Day -->
+  <div class="forecast-list">
+    <div>
+      <img
+        [src]="getWeatherIcon(selectedCityForecast.list[0].weather[0].icon)"
+        alt="Weather Icon"
+        style="height: 100px; width: 100px"
+      />
+    </div>
+    <div class="forecast-date">
+      <div>{{ selectedCityForecast.list[0].main.temp }}°C</div>
+      <div>{{ selectedCityForecast.list[0].weather[0].main }}</div>
+      <div>Wind: {{ selectedCityForecast.list[0].wind.deg }}°</div>
+      <div>Pressure: {{ selectedCityForecast.list[0].main.pressure }}</div>
+    </div>
+  </div>
+  <div class="forecast-list">
+    <div
+      *ngFor="let forecast of selectedCityForecast.list"
+      class="forecast-item"
+    >
+      <!-- Date and Day -->
+      <div class="forecast-date">
+        <div>{{ forecast.formattedDay.Day }}</div>
+        <div>{{ forecast.formattedDay.weekday }}</div>
+        <img
+          [src]="getWeatherIcon(forecast.weather[0].icon)"
+          alt="Weather Icon"
+          class="weather-icon"
+        />
+        <div>{{ forecast.main.temp }}°C</div>
+      </div>
+    </div>
+  </div>
+</div>

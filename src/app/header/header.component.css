@@ -1,0 +1,35 @@
+/* General styling for the navbar */
+.navbar {
+    background-color: #7bb7f3;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Styling for the navbar links */
+  .navbar-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+  }
+  
+  /* Styling for individual list items */
+  .navbar-links li {
+    margin-right: 20px;
+  }
+  
+  /* Move the weather link to the right */
+  .navbar-links li:last-child {
+    margin-left: auto; /* Pushes the last item to the right */
+  }
+  
+  /* Styling for the anchor tags */
+  .navbar-links a {
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+  }
+  

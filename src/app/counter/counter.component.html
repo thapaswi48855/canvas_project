@@ -1,0 +1,15 @@
+<div class="navbar">
+    <h2>Number of Counters: {{ counterCount$ | async }}</h2>
+  </div>
+  
+  <button class="btn btn-primary" style="margin: 10px;" (click)="resetCounters()">Reset </button>
+  <button class="btn btn-primary" style="margin: 10px;" (click)="addCounter()">Add </button>
+  
+  <div *ngFor="let counter of counters$ | async" class="mt-3">
+    <!-- <h3>Counter {{ counter.id }}</h3> -->
+    <p class="btn btn-primary" style="margin: 10px;">{{ counter.count }}</p>
+    <button class="btn btn-warning" (click)="incrementCounter(counter.id)">Increment</button>
+    <button class="btn btn-warning" (click)="decrementCounter(counter.id)">Decrement</button>
+    <button class="btn btn-danger" (click)="deleteCounter(counter.id)">Delete</button>
+  </div>
+  
