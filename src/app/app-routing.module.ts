@@ -6,7 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
-  {path:'',component:HeaderComponent},
+  {path:'header',component:HeaderComponent},
   {path:'counter',component:CounterComponent},
   {path:'vatavaran',component:WeatherComponent},
   {path:'users',component:UsersComponent}
