@@ -70,57 +70,6 @@ export class WeatherComponent {
       });
   }
 
-  // filterForecastForCurrentTime() {
-  //   const currentTime = new Date();
-  //   const currentHour = currentTime.getHours();
-  //   console.log(this.selectedCityForecast.list)
-  //   // Get the forecast for the same time on the next 5 days
-  //   const filteredForecast = this.selectedCityForecast.list.filter((item:any) => {
-  //     const forecastDate = new Date(item.dt * 1000); // Convert UNIX timestamp to Date
-  //     return forecastDate.getHours() === currentHour; // Check if the hour matches
-  //   });
-
-  //   this.selectedCityForecast.list = filteredForecast; // Update the forecast list
-  // }
-
-  // filterForecastForNextFiveDays() {
-  //   const currentTime = new Date();
-  //   const currentHour = currentTime.getHours(); // Get current hour
-    
-  //   const forecastForFiveDays = []; // Array to store filtered forecasts
-  
-  //   // Get the next 5 days including today
-  //   for (let i = 0; i < this.selectedCityForecast.list.length; i++) {
-  //     const forecast = this.selectedCityForecast.list[i];
-  //     const forecastDate = new Date(forecast.dt * 1000); // Convert UNIX timestamp to Date
-  
-  //     const forecastDay = forecastDate.getDate();  // Day of the forecast
-  //     const currentDay = currentTime.getDate();    // Current day
-  
-  //     // Log date and time for debugging
-  //     console.log('Forecast Date:', forecastDate);
-  //     console.log('Forecast Day:', forecastDay);
-  
-  //     // We want the forecast for today and the next 5 days at the closest hour
-  //     if (forecastDay >= currentDay && forecastDay <= currentDay + 4) {
-  //       // Check if the forecast hour is close to the current hour (within 1-3 hours)
-  //       if (Math.abs(forecastDate.getHours() - currentHour) <= 1) {
-  //         // this.selectedCityForecast.list[i]['forecast Day']=forecast;
-  //         console.log('Matching forecast for day:', forecastDay);
-  //         forecastForFiveDays.push(forecast);
-  //       }
-  //     }
-  //   }
-  
-  //   if (forecastForFiveDays.length > 0) {
-  //     console.log('Filtered Forecast for 5 days:', forecastForFiveDays);
-  //     this.selectedCityForecast.list = forecastForFiveDays; // Update the forecast list
-  //   } else {
-  //     console.log('No forecast data found for the next 5 days.');
-  //   }
-  // }
-
-
   filterForecastForNextFiveDays() {
     const currentTime = new Date();
     const currentHour = currentTime.getHours(); // Get the current hour
@@ -139,7 +88,7 @@ export class WeatherComponent {
       // Ensure we add only one forecast per day
       if (!daysAdded.has(forecastDay)) {
         // Match the closest hour to the current hour (within 1-3 hours)
-        if (Math.abs(forecastDate.getHours() - currentHour) <= 2) {
+        if (Math.abs(forecastDate.getHours() - currentHour) <= 3) {
           forecast.formattedDay = {Day:parseInt(`${forecastDay}`), weekday:`${forecastWeekday}`}; // Combine day and weekday
           forecastForFiveDays.push(forecast);
           daysAdded.add(forecastDay); // Mark this day as added
