@@ -5,11 +5,6 @@ import { selectCounterCount, selectCounters } from '../store/counter.selectors';
 import { increment, decrement, reset, addCounter, deleteCounter } from '../store/counter.actions';
 import { CounterState} from '../store/counter.reducer';
 
-// interface Counter {
-//   id: number;
-//   count: number;
-//   label: string;
-// }
 
 @Component({
   selector: 'app-counter',
@@ -17,11 +12,10 @@ import { CounterState} from '../store/counter.reducer';
   styleUrls: ['./counter.component.css']
 })
 export class CounterComponent {
-  counters$: Observable<CounterState[]>; // Observable for counter state
-  counterCount$: Observable<number>; // Observable for counter count
+  counters$: Observable<CounterState[]>; 
+  counterCount$: Observable<number>; 
 
   constructor(private store: Store) {
-    // Select the counters and their count from the store
     this.counters$ = this.store.select(selectCounters);
     this.counterCount$ = this.store.select(selectCounterCount);
   }

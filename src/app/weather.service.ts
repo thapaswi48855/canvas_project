@@ -18,7 +18,7 @@ export class WeatherService {
     const url = `${this.weatherUrl}?q=${cityName}&appid=${this.apiKey}&units=metric`;
     return this.http.get(url).pipe(
       map(data => data),
-      catchError(() => of({ error: true })) // Return an error object if the request fails
+      catchError(() => of({ error: true })) 
     );
   }
 

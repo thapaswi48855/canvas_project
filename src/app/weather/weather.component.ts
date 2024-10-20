@@ -25,12 +25,11 @@ export class WeatherComponent {
       } else {
         this.error = false;
 
-        // Keep only 8 locations, push new one to the top and remove the last
         if (this.recentLocations.length === 8) {
           this.recentLocations.pop();
         }
 
-        const weatherIcon = this.getWeatherIcon(data.weather[0].icon); // Use the icon code from API
+        const weatherIcon = this.getWeatherIcon(data.weather[0].icon);
 
         this.recentLocations.unshift({
           name: data.name,
@@ -39,7 +38,7 @@ export class WeatherComponent {
           weatherIcon: weatherIcon,
         });
 
-        this.cityName = ''; // Clear input
+        this.cityName = '';
       }
     });
   }
@@ -72,49 +71,44 @@ export class WeatherComponent {
 
   filterForecastForNextFiveDays() {
     const currentTime = new Date();
-    const currentHour = currentTime.getHours(); // Get the current hour
-    
-    const forecastForFiveDays = []; // Array to store filtered forecasts
-    const daysAdded = new Set(); // Set to track which days have been added
-  
-    // Loop through the forecast list to extract data for up to 5 days
+    const currentHourUTC = currentTime.getUTCHours();
+
+    const forecastForFiveDays = [];
+    const daysAdded = new Set();
+
     for (let i = 0; i < this.selectedCityForecast.list.length; i++) {
       const forecast = this.selectedCityForecast.list[i];
-      const forecastDate = new Date(forecast.dt * 1000); // Convert UNIX timestamp to Date
-      
-      const forecastDay = forecastDate.getDate();  // Day of the forecast (e.g., 18)
-      const forecastWeekday = forecastDate.toLocaleDateString('en-US', { weekday: 'short' }); // Day of the week (e.g., "Fri")
-  
-      // Ensure we add only one forecast per day
+      const forecastDate = new Date(forecast.dt * 1000);
+
+      const forecastDay = forecastDate.getUTCDate();
+      const forecastWeekday = forecastDate.toLocaleDateString('en-US', {
+        weekday: 'short',
+      });
+      const forecastHourUTC = forecastDate.getUTCHours();
+
       if (!daysAdded.has(forecastDay)) {
-        // Match the closest hour to the current hour (within 1-3 hours)
-        if (Math.abs(forecastDate.getHours() - currentHour) <= 3) {
-          forecast.formattedDay = {Day:parseInt(`${forecastDay}`), weekday:`${forecastWeekday}`}; // Combine day and weekday
+        if (Math.abs(forecastHourUTC - currentHourUTC) <= 3) {
+          forecast.formattedDay = {
+            day: parseInt(`${forecastDay}`),
+            weekday: `${forecastWeekday}`,
+          };
           forecastForFiveDays.push(forecast);
-          daysAdded.add(forecastDay); // Mark this day as added
+          daysAdded.add(forecastDay);
         }
       }
-  
-      // Stop once we have data for 5 days
+
       if (forecastForFiveDays.length === 5) {
         break;
       }
     }
-  
+
     if (forecastForFiveDays.length > 0) {
       console.log('Filtered Forecast for 5 days:', forecastForFiveDays);
-      this.selectedCityForecast.list = forecastForFiveDays; // Update the forecast list with 5-day data
+      this.selectedCityForecast.list = forecastForFiveDays;
     } else {
       console.log('No forecast data found for the next 5 days.');
     }
   }
-  
-  
-  
-
-  // getWeatherIcon(iconCode: string): string {
-  //   return `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
-  // }
 
   getWeatherIcon(weatherType: string): string {
     switch (weatherType.toLowerCase()) {

@@ -108,7 +108,8 @@
     >
       <!-- Date and Day -->
       <div class="forecast-date">
-        <div>{{ forecast.formattedDay.Day }}</div>
+        <!-- {{ forecast.formattedDay |json}} -->
+        <div>{{ forecast.formattedDay.day }}</div>
         <div>{{ forecast.formattedDay.weekday }}</div>
         <img
           [src]="getWeatherIcon(forecast.weather[0].icon)"
